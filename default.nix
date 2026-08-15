@@ -17,20 +17,20 @@ let
     '';
   };
   nixosConfig = nixos (
-    { config, ... }: {
+    { config, modulesPath, ... }: {
+      imports = [ (modulesPath + "/virtualisation/qemu-vm.nix") ];
+
       services.desktopManager.gnome.enable = true;
       services.displayManager.gdm.enable = true;
+      environment.systemPackages = [ tnoodle ];
+
       system.stateVersion = config.system.nixos.release;
-
       users.mutableUsers = false;
-
       services.displayManager.autoLogin = {
         enable = true;
         user = "demo";
       };
-
-      environment.systemPackages = [ tnoodle ];
-
+      security.sudo.wheelNeedsPassword = false;
       users.groups.demo = { };
       users.users.demo = {
         isNormalUser = true;
@@ -40,6 +40,8 @@ let
           "wheel"
         ];
       };
+
+      virtualisation.memorySize = 2048;
     }
   );
 in
