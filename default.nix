@@ -1,6 +1,6 @@
 {
   lib,
-  openjdk,
+  openjdk25,
   fetchurl,
   writeShellApplication,
   nixos,
@@ -15,7 +15,7 @@ let
     name = "tnoodle";
     text = ''
       export LD_LIBRARY_PATH=${lib.getLib glib}/lib
-      exec ${lib.getExe openjdk} -jar ${tnoodleJar}
+      exec ${lib.getExe openjdk25} -jar ${tnoodleJar}
     '';
   };
   nixosConfig = nixos (
