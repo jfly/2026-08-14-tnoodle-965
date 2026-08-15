@@ -4,6 +4,7 @@
   fetchurl,
   writeShellApplication,
   nixos,
+  glib,
 }:
 let
   tnoodleJar = fetchurl {
@@ -13,6 +14,7 @@ let
   tnoodle = writeShellApplication {
     name = "tnoodle";
     text = ''
+      export LD_LIBRARY_PATH=${lib.getLib glib}/lib
       exec ${lib.getExe openjdk} -jar ${tnoodleJar}
     '';
   };
