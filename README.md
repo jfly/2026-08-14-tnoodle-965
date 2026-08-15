@@ -4,7 +4,8 @@ This spins up a GNOME shell desktop environment with TNoodle installed. Just
 open a terminal and run `tnoodle`, you should see it crash, as described in
 [#965](https://github.com/thewca/tnoodle/issues/965).
 
-To start the desktop environment:
+To start the desktop environment (requires [nix](https://nixos.org/) with
+flakes enabled):
 
 ```console
 $ nix run github:jfly/2026-08-14-tnoodle-965
